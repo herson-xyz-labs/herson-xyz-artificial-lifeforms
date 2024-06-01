@@ -8,12 +8,10 @@
     "dev": "vite",
     "build": "vite build"
   },
-  "devDependencies": {
+  "dependencies": {
     "@vitejs/plugin-react": "4.2",
     "vite": "^5.2.10",
-    "vite-plugin-restart": "^0.4.0"
-  },
-  "dependencies": {
+    "vite-plugin-restart": "^0.4.0",
     "@react-spring/three": "^9.7.3",
     "@react-three/drei": "9.105",
     "@react-three/fiber": "8.16",
