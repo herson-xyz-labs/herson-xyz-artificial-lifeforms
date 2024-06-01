@@ -1,6 +1,6 @@
 import { OrbitControls, Environment } from "@react-three/drei";
 import { useThree, extend } from '@react-three/fiber';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import * as THREE from "three";
 import TransmissiveObject from "./TransmissiveObject";
 import Lifeforms from "./Lifeforms";
@@ -8,40 +8,26 @@ import ALText from "./ALText";
 
 extend({ OrbitControls });
 
-export default function Experience()
+export default function Experience({ roughness })
 {
-    const SetBackgroundColor = ({ color }) => {
-        const { scene } = useThree();
-    
-        useEffect(() => {
-            scene.background = new THREE.Color(color);
-        }, [color, scene]);
-    
-        return null;
-    };
+    const { scene, camera } = useThree();
 
-    const SetCameraPosition = () => {
-        const { camera } = useThree();
-
-        useEffect(() => {
-            camera.position.set(0, 0, 0.1); // Set camera position to (0, 0, 0)
-            camera.lookAt(0, 0, 0); // Make sure the camera is looking at the center
-        }, [camera]);
-
-        return null;
-    };
+    useEffect(() => {
+        camera.position.set(0, 0, 0.1); // Set camera position
+        camera.lookAt(0, 0, 0); // Camera looks at the center
+        //scene.background = new THREE.Color('#fff'); // Set background color
+    }, [camera, scene]);
 
     return <>
-        <OrbitControls />
-        <SetCameraPosition />
-        <Environment
-            background 
-            files={ './environmentMaps/1/hdri.hdr'}
-        />
+        {/* <OrbitControls /> */}
         <group>
+            <Environment
+                background 
+                files={ './environmentMaps/1/hdri.hdr'}
+            />
             <Lifeforms />
-            <TransmissiveObject />
-            <ALText />
+            <TransmissiveObject roughness={roughness} />
+            <ALText roughness={roughness} />
         </group>
     </>
 }

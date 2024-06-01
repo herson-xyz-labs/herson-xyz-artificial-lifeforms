@@ -4,7 +4,7 @@ import { useSpring, a } from '@react-spring/three';
 import { useControls } from 'leva';
 import { useEffect, useState } from 'react';
 
-export default function ALText() {
+export default function ALText( {roughness} ) {
     const { viewport } = useThree()
     const { color, maxWidth, lineHeight, letterSpacing, textAlign } = useControls({
         color: { value: '#EC2D2D', label: 'Color' },
@@ -14,22 +14,36 @@ export default function ALText() {
         textAlign: { value: 'left', options: ['left', 'right', 'center', 'justify'], label: 'Text Align' }
     })
 
+    // Define the spring-animated properties
+    const { position } = useSpring({
+        position: [0, roughness * 10 - 4, 0], // Moves the text upwards as roughness increases
+        config: { mass: 1, tension: 280, friction: 60 }
+    });
+
+    // Function to determine which text to display
+    const getText = (roughness) => {
+        if (roughness < 25) return "Artificial Lifeforms";
+        else if (roughness < 50) return "coming soon";
+        else if (roughness < 75) return "launch in 2024";
+        else return "stay tuned";
+    };
+
     return (
-        <>
-        <Text
-            color={color}
-            fontSize={1.0}
-            maxWidth={(viewport.width / 2)}
-            lineHeight={lineHeight}
-            letterSpacing={letterSpacing}
-            textAlign={'left'}
-            font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
-            anchorX="center"
-            anchorY="center"
-            position={[0, 0, -4]}
-            >
-            Artificial Lifeforms, coming soon
-        </Text>
-        </>
+        <a.group>
+            <Text
+                color={color}
+                fontSize={1.0}
+                maxWidth={(viewport.width / 2)}
+                lineHeight={lineHeight}
+                letterSpacing={letterSpacing}
+                textAlign={'left'}
+                font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
+                anchorX="center"
+                anchorY="center"
+                position={[0, 0, -4]}
+                >
+                {getText(roughness)}
+            </Text>
+        </a.group>
     )
 }

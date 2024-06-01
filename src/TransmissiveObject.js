@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import { useControls } from 'leva'
 import * as THREE from 'three'
 
-export default function TransmissiveObject()
+export default function TransmissiveObject({ roughness })
 {
     const seeThroughObject = useRef();
     const buffer = useFBO();
@@ -35,9 +35,9 @@ export default function TransmissiveObject()
         transmission: { value: 3, min: 0, max: 4} 
     });
 
-    const { roughness } = useControls('roughness', { 
-        roughness: { value: 0, min: 0, max: 1} 
-    });
+    // const { roughness } = useControls('roughness', { 
+    //     roughness: { value: 0, min: 0, max: 1} 
+    // });
 
     return <>
         <group
@@ -55,7 +55,7 @@ export default function TransmissiveObject()
                 />
                 <MeshTransmissionMaterial 
                     transmission={transmission}
-                    roughness={roughness}
+                    roughness={0.6 * (100 / roughness)}
                     thickness={0.01}
                     normalScale={[0.4, 0.4]}
                     color={"white"} 
