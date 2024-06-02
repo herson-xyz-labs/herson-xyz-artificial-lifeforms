@@ -20,7 +20,7 @@ export default function Experience({ roughness })
 
     return <>
         {/* <OrbitControls /> */}
-        <Environment background files={ './environmentMaps/1/hdri.hdr'} />
+        {/* <Environment background files={ './environmentMaps/1/hdri.hdr'} /> */}
         <group>
             <Lifeforms />
             <TransmissiveObject roughness={roughness} />

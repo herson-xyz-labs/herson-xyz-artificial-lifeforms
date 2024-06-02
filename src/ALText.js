@@ -36,7 +36,7 @@ export default function ALText( {roughness} ) {
             };
         } else if (roughness < 75) {
             return {
-                text: "launch 2024, stay tuned",
+                text: "launch 2024",
                 fontSize: 0.2,
                 maxWidth: viewport.width / 2,
                 lineHeight: 0.75,
