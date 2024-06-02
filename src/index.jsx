@@ -7,7 +7,7 @@ import { useState } from 'react';
 const root = ReactDOM.createRoot(document.querySelector('#root'));
 
 const App = () => {
-    const [roughness, setRoughness] = useState(0);
+    const [roughness, setRoughness] = useState(20);
 
     const handleWheel = (event) => {
         // Define constants for sensitivity and maximum roughness
@@ -21,7 +21,7 @@ const App = () => {
         let newRoughness = roughness + change;
 
         // Clamp the new roughness value within the allowed range
-        newRoughness = Math.max(0, Math.min(newRoughness, maxRoughness));
+        newRoughness = Math.max(20, Math.min(newRoughness, maxRoughness));
 
         // Update the roughness state
         setRoughness(newRoughness);

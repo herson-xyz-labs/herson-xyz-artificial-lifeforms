@@ -20,14 +20,11 @@ export default function Experience({ roughness })
 
     return <>
         {/* <OrbitControls /> */}
+        <Environment background files={ './environmentMaps/1/hdri.hdr'} />
         <group>
-            <Environment
-                background 
-                files={ './environmentMaps/1/hdri.hdr'}
-            />
             <Lifeforms />
             <TransmissiveObject roughness={roughness} />
-            <ALText roughness={roughness} />
         </group>
+        <ALText roughness={roughness} />
     </>
 }

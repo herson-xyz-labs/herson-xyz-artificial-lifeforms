@@ -27,39 +27,27 @@ export default function TransmissiveObject({ roughness })
         }
     );
 
-    const { envMapIntensity } = useControls('environment map', { 
-        envMapIntensity: { value: 1, min: 0, max: 12} 
-    });
-
-    const { transmission } = useControls('transmission', { 
-        transmission: { value: 3, min: 0, max: 4} 
-    });
-
-    // const { roughness } = useControls('roughness', { 
-    //     roughness: { value: 0, min: 0, max: 1} 
-    // });
-
     return <>
         <group
         >
             <mesh
                 ref={ seeThroughObject }
-                scale={[1, 1, 6]}
+                scale={[4, 4, 4]}
                 position-y={ 0 }
-                position-z={ -0.25 }
+                position-z={ -3 }
                 rotation={[0, Math.PI / 2, 0]} // Rotate 90 degrees around Y-axis
                 >
-                <torusGeometry
+                <sphereGeometry
                     rotateZ={Math.PI / 4}
                     //args={ [1, 1, 1] }
                 />
                 <MeshTransmissionMaterial 
-                    transmission={transmission}
+                    transmission={3}
                     roughness={0.6 * (100 / roughness)}
                     thickness={0.01}
                     normalScale={[0.4, 0.4]}
                     color={"white"} 
-                    envMapIntensity={envMapIntensity}
+                    envMapIntensity={1}
                     buffer={buffer.texture}
                     side={THREE.BackSide}
                 />
