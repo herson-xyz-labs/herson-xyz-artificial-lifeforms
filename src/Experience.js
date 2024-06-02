@@ -15,7 +15,7 @@ export default function Experience({ roughness })
     useEffect(() => {
         camera.position.set(0, 0, 0.1); // Set camera position
         camera.lookAt(0, 0, 0); // Camera looks at the center
-        //scene.background = new THREE.Color('#fff'); // Set background color
+        //scene.background = new THREE.Color('#D40000'); // Set background color
     }, [camera, scene]);
 
     return <>
